@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { login } from '../services/authService';
 import './Login.css';
 
-const Login: React.FC = () => {
+function Login({ handleLoginSuccess }: { handleLoginSuccess: (token: string) => void }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -11,8 +11,8 @@ const Login: React.FC = () => {
         event.preventDefault();
         try {
             const response = await login(username, password);
-            console.log('Login successful, token:', response.token);
-            // Aquí puedes guardar el token en el estado de la aplicación o en el almacenamiento local
+            handleLoginSuccess(response.token);
+            setError('');
         } catch (error) {
             setError('Invalid username or password');
         }

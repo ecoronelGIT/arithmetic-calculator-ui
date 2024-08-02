@@ -5,6 +5,6 @@ interface LoginResponse {
 }
 
 export const login = async (username: string, password: string): Promise<LoginResponse> => {
-    const response = await api.post<LoginResponse>('/auth/login', { username, password });
-    return response.data;
+    //const response = await api.post<LoginResponse>('/auth/login', { username, password });
+    return { token: 'ABC' };
 };
